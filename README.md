@@ -7,9 +7,14 @@ A Retrieval-Augmented Generation (RAG) framework utilizing Large Language Models
 1. Install Ollama:
    ```bash
    https://ollama.com/download
+   ollama pull mistral
    ```   
 2. Install the required packages:
    ```bash
+   git clone https://github.com/remisharoon/LLM-Blog-Answer-Generator.git
+   cd LLM-Blog-Answer-Generator
+   python -m venv venv
+   source venv/bin/activate
    pip install -r requirements.txt
    ```
 3. Run the application:
