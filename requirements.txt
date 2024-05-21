@@ -1,0 +1,17 @@
+numpy
+pandas
+flask
+transformers
+beautifulsoup4
+requests
+elasticsearch
+nltk
+langchain
+langchain-community
+unstructured
+sentence-transformers
+chromadb
+langchain_community
+ollama
+gradio
+langchainhub
