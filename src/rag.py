@@ -55,21 +55,20 @@ class RAGFramework:
         return chunks
 
     def save_to_chroma(self, chunks: list[Document]):
-        # Clear out the database first.
-        if os.path.exists(self.CHROMA_PATH):
-            shutil.rmtree(self.CHROMA_PATH)
-
-        # Create a new DB from the documents.
-        db = Chroma.from_documents(
-            chunks, FastEmbedEmbeddings(), persist_directory=self.CHROMA_PATH
-        )
-        db.persist()
-        print(f"Saved {len(chunks)} chunks to {self.CHROMA_PATH}.")
+        if not os.path.exists(self.CHROMA_PATH):
+            # Create a new DB from the documents.
+            db = Chroma.from_documents(
+                chunks, FastEmbedEmbeddings(), persist_directory=self.CHROMA_PATH
+            )
+            db.persist()
+            print(f"Saved {len(chunks)} chunks to {self.CHROMA_PATH}.")
+        else:
+            # Load the existing DB if it already exists.
+            db = Chroma(embedding_function=FastEmbedEmbeddings(), persist_directory=self.CHROMA_PATH)
+            print(f"Loaded existing database from {self.CHROMA_PATH}.")
         return db
 
     def load_documents(self):
-        # chunks = self.text_splitter.split_documents(texts)  # Correct method to split text
-        # self.vector_store = Chroma.from_documents(documents=chunks, embedding=FastEmbedEmbeddings())
         documents = self.load_documents_from_disk()
         chunks = self.split_text(documents)
         self.vector_store = self.save_to_chroma(chunks)

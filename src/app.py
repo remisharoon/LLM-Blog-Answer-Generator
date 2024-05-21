@@ -5,7 +5,7 @@ from streamlit_chat import message
 from rag import RAGFramework
 from bs4 import BeautifulSoup
 
-st.set_page_config(page_title="Blog RAG Assistant")
+st.set_page_config(page_title="Additive Answers: A Blog RAG Assistant")
 
 BLOG_URLS = [
     "https://www.addcomposites.com/post/peek-carbon-fiber-laminate-bonding-with-high-performance-polymer-processed-by-fff-3d-printing",
@@ -41,13 +41,20 @@ def retrieve_articles(urls):
     if not os.path.exists('data/articles'):
         os.makedirs('data/articles')
     for i, url in enumerate(urls, 1):
-        print(f"Downloading article {i} from {url}")
-        html_content = fetch_article(url)
-        if html_content:
-            soup = BeautifulSoup(html_content, 'html.parser')
-            # Assuming articles are within <article> tags
-            article_content = soup.find('article').text if soup.find('article') else "No article content found"
-            save_article(article_content, f'data/articles/article_{i}.txt')
+        filename = f'data/articles/article_{i}.txt'
+        if not os.path.exists(filename):  # Check if the file already exists
+            print(f"Downloading article {i} from {url}")
+            html_content = fetch_article(url)
+            if html_content:
+                soup = BeautifulSoup(html_content, 'html.parser')
+                article_content = soup.find('article').text if soup.find('article') else "No article content found"
+                save_article(article_content, filename)
+            else:
+                article_content = "Failed to fetch article"
+        else:
+            print(f"Article {i} already downloaded. Loading from disk.")
+            with open(filename, 'r', encoding='utf-8') as file:
+                article_content = file.read()
         texts.append(article_content)
     return texts
 
@@ -76,7 +83,7 @@ def page():
         st.session_state["texts"] = retrieve_articles(BLOG_URLS)
         st.session_state["rag_framework"].load_documents()
 
-    st.header("Blog RAG Assistant")
+    st.header("Additive Answers: A Blog RAG Assistant")
 
     display_messages()
     st.text_input("Ask a question about the blogs", key="user_input", on_change=process_input)
