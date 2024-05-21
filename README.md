@@ -13,7 +13,7 @@ A Retrieval-Augmented Generation (RAG) framework utilizing Large Language Models
    ```bash
    git clone https://github.com/remisharoon/LLM-Blog-Answer-Generator.git
    cd LLM-Blog-Answer-Generator
-   python -m venv venv
+   python3 -m venv venv
    source venv/bin/activate
    pip install -r requirements.txt
    ```
