@@ -50,3 +50,11 @@ Here are some example prompts you can use to test the capabilities of the AI Blo
 10. Could you describe the novel path-planning approach for 3D robotic filament winding in composite materials?
 
 These prompts are designed to query the system about specific topics related to the blog articles from the provided URLs.
+
+Connect with Me on LinkedIn
+
+I’d love to keep the conversation going. If you found this article insightful or have thoughts, experiences, and ideas to share, let’s [connect on LinkedIn!](https://www.linkedin.com/in/remisharoon/)
+
+Here's a [video preview](https://www.youtube.com/watch?v=BR-MKv1s9bA)
+
+I’m always eager to engage with fellow professionals and enthusiasts in the field.
