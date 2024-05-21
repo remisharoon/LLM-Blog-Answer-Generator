@@ -1,6 +1,7 @@
 
 # AI-Blog-Query-Responder
 A Retrieval-Augmented Generation (RAG) framework utilizing Large Language Models to answer queries based on blog articles. 
+<img width="835" alt="image" src="https://github.com/remisharoon/LLM-Blog-Answer-Generator/assets/8828470/e95ccece-a2f4-4874-90f7-2b72d1f6ab30">
 
 ## Setup
 1. Install Ollama:
